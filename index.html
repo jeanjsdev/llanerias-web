@@ -15,18 +15,18 @@
 
   <style>
     :root {
-      --bg: #000000;
-      --bg-elevated: #0a0a0a;
-      --bg-card: #111111;
-      --bg-card-hover: #161616;
-      --text: #f5f5f7;
-      --text-secondary: #86868b;
-      --text-tertiary: #6e6e73;
-      --border: rgba(255,255,255,.06);
-      --border-hover: rgba(255,255,255,.12);
+      --bg: #0f0f0f;
+      --bg-elevated: #181818;
+      --bg-card: #1c1c1c;
+      --bg-card-hover: #222222;
+      --text: #f1f1f1;
+      --text-secondary: #aaaaaa;
+      --text-tertiary: #717171;
+      --border: rgba(255,255,255,.08);
+      --border-hover: rgba(255,255,255,.16);
       --youtube: #ff0000;
       --whatsapp: #25d366;
-      --max: 1120px;
+      --max: 1080px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,12 +35,10 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Helvetica Neue', sans-serif;
+      font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
       line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      letter-spacing: -0.01em;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -51,19 +49,19 @@
       margin: auto;
     }
 
-    /* ============ HEADER ============ */
+    /* ============ HEADER (fino, estilo YouTube) ============ */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(0,0,0,.72);
-      backdrop-filter: saturate(180%) blur(20px);
-      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      background: rgba(15,15,15,.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      height: 52px;
+      height: 56px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,15 +72,14 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: .02em;
-      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: .08em;
     }
 
     .brand-logo {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       object-fit: cover;
     }
@@ -90,24 +87,24 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 26px;
     }
 
     nav a {
       color: var(--text-secondary);
-      font-size: 12px;
-      font-weight: 400;
+      font-size: 13px;
+      font-weight: 500;
       transition: color .2s ease;
     }
 
     nav a:hover { color: var(--text); }
 
     .nav-cta {
-      padding: 6px 14px;
+      padding: 7px 16px;
       border: 1px solid var(--border-hover);
-      border-radius: 980px;
+      border-radius: 999px;
       color: var(--text) !important;
-      font-size: 11.5px !important;
+      font-size: 12.5px !important;
       font-weight: 500 !important;
       transition: all .2s ease;
     }
@@ -118,130 +115,117 @@
       border-color: var(--text);
     }
 
-    /* ============ HERO CON BANNER PROTAGONISTA ============ */
-    .hero {
+    /* ============ BANNER + PERFIL (ESTILO YOUTUBE) ============ */
+    .channel-header {
       position: relative;
-      padding: 0;
-      overflow: hidden;
-      background: var(--bg);
+      margin-top: 56px; /* debajo del header fijo */
     }
 
-    /* BANNER DE CABALLOS — AHORA PROTAGONISTA */
-    .hero-banner {
-      position: relative;
+    /* BANNER: franja fina, como YouTube */
+    .channel-banner {
       width: 100%;
-      height: 65vh;
-      min-height: 420px;
-      max-height: 620px;
+      height: 200px;
       overflow: hidden;
+      background: #000;
     }
 
-    .hero-banner img {
+    .channel-banner img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center 45%;
-      /* Imagen NÍTIDA y visible, como en YouTube */
       opacity: 1;
     }
 
-    /* Degradado SOLO en la parte inferior para fundir con el fondo */
-    .hero-banner::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) 50%,
-        rgba(0,0,0,.5) 80%,
-        var(--bg) 100%
-      );
-      pointer-events: none;
-    }
-
-    /* CONTENIDO DEL HERO DEBAJO DEL BANNER */
-    .hero-content {
+    /* PERFIL: logo redondo que se solapa sobre el banner */
+    .channel-profile {
       position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 780px;
-      margin: -80px auto 0;
-      padding: 0 24px 100px;
+      padding: 0 0 40px;
+      margin-top: -55px; /* el logo sube y se solapa con el banner */
     }
 
-    .hero-logo {
-      width: 140px;
-      height: 140px;
+    .channel-profile-inner {
+      display: flex;
+      align-items: flex-end;
+      gap: 24px;
+      padding-top: 0;
+    }
+
+    .channel-avatar {
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 28px;
       border: 4px solid var(--bg);
-      box-shadow: 0 20px 60px rgba(0,0,0,.7);
       background: var(--bg);
-      position: relative;
+      flex-shrink: 0;
     }
 
-    .hero-eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 500;
-      color: var(--text-secondary);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 20px;
+    .channel-info {
+      padding-bottom: 6px;
+      flex: 1;
+      min-width: 0;
     }
 
-    h1 {
-      font-size: clamp(40px, 7vw, 80px);
-      line-height: 1.05;
-      letter-spacing: -.04em;
-      font-weight: 600;
-      margin-bottom: 24px;
-      color: var(--text);
-    }
-
-    h1 .light {
-      color: var(--text-secondary);
-      font-weight: 200;
-    }
-
-    .hero-subtitle {
-      font-size: clamp(17px, 2vw, 21px);
-      line-height: 1.45;
-      color: var(--text-secondary);
-      max-width: 560px;
-      margin: 0 auto 40px;
-      font-weight: 400;
+    .channel-name {
+      font-size: 32px;
+      font-weight: 700;
       letter-spacing: -.01em;
+      margin-bottom: 6px;
+      line-height: 1.1;
     }
 
-    .hero-subtitle strong {
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    .actions {
+    .channel-meta {
       display: flex;
+      align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      justify-content: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+
+    .channel-meta .dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--text-tertiary);
+    }
+
+    .channel-motto {
+      margin-top: 12px;
+      color: var(--text-secondary);
+      font-size: 14px;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+
+    .channel-motto strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* BOTONES (debajo, como YouTube) */
+    .channel-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 0 22px;
-      border-radius: 980px;
+      min-height: 38px;
+      padding: 0 18px;
+      border-radius: 999px;
       font-weight: 500;
-      font-size: 14px;
-      transition: all .25s ease;
+      font-size: 13.5px;
+      transition: all .2s ease;
       gap: 8px;
       border: none;
       cursor: pointer;
-      letter-spacing: -.01em;
+      letter-spacing: .01em;
     }
 
     .button svg {
@@ -258,7 +242,6 @@
 
     .button-youtube:hover {
       background: #e60000;
-      transform: translateY(-1px);
     }
 
     .button-whatsapp {
@@ -268,44 +251,51 @@
 
     .button-whatsapp:hover {
       background: #1eb857;
-      transform: translateY(-1px);
+    }
+
+    .button-secondary {
+      background: rgba(255,255,255,.1);
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      background: rgba(255,255,255,.18);
     }
 
     /* ============ SECTIONS ============ */
     section {
-      padding: 100px 0;
+      padding: 80px 0;
       position: relative;
     }
 
     .section-header {
       text-align: center;
       max-width: 640px;
-      margin: 0 auto 60px;
+      margin: 0 auto 50px;
     }
 
     .section-label {
       display: inline-block;
       font-size: 12px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-secondary);
-      letter-spacing: .12em;
+      letter-spacing: .14em;
       text-transform: uppercase;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .section-title {
-      font-size: clamp(32px, 4.5vw, 48px);
-      line-height: 1.1;
-      letter-spacing: -.03em;
-      margin-bottom: 16px;
-      font-weight: 600;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin-bottom: 14px;
+      font-weight: 700;
     }
 
     .section-description {
       color: var(--text-secondary);
-      font-size: 17px;
-      line-height: 1.5;
-      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
     }
 
     /* ============ LIVE ============ */
@@ -316,13 +306,12 @@
     }
 
     .live-card {
-      max-width: 780px;
+      max-width: 760px;
       margin: 0 auto;
       border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
+      border-radius: 16px;
       background: var(--bg-card);
-      padding: 48px;
+      padding: 40px;
       text-align: center;
       transition: border-color .3s ease;
     }
@@ -334,9 +323,9 @@
       align-items: center;
       gap: 8px;
       color: var(--text-secondary);
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       font-size: 11px;
-      font-weight: 500;
+      font-weight: 600;
       text-transform: uppercase;
       letter-spacing: .14em;
     }
@@ -354,17 +343,17 @@
     }
 
     .live h3 {
-      font-size: clamp(24px, 3vw, 32px);
-      margin-bottom: 14px;
-      font-weight: 600;
-      letter-spacing: -.02em;
+      font-size: clamp(22px, 3vw, 28px);
+      margin-bottom: 12px;
+      font-weight: 700;
+      letter-spacing: -.01em;
     }
 
     .live p {
       color: var(--text-secondary);
       max-width: 480px;
-      margin: 0 auto 28px;
-      font-size: 15px;
+      margin: 0 auto 24px;
+      font-size: 14.5px;
     }
 
     /* ============ IDENTITY ============ */
@@ -377,12 +366,11 @@
     }
 
     .identity-card {
-      padding: 32px 28px;
+      padding: 28px 24px;
       border: 1px solid var(--border);
-      border-radius: 20px;
+      border-radius: 16px;
       background: var(--bg-card);
       transition: all .3s ease;
-      text-align: left;
     }
 
     .identity-card:hover {
@@ -391,17 +379,16 @@
       transform: translateY(-2px);
     }
 
-    .identity-flag { font-size: 24px; margin-bottom: 20px; }
+    .identity-flag { font-size: 24px; margin-bottom: 16px; }
     .identity-card h3 {
-      font-size: 17px;
+      font-size: 16px;
       margin-bottom: 8px;
-      font-weight: 500;
-      letter-spacing: -.01em;
+      font-weight: 600;
     }
     .identity-card p {
       color: var(--text-secondary);
-      font-size: 14px;
-      line-height: 1.5;
+      font-size: 13.5px;
+      line-height: 1.55;
     }
 
     /* ============ COMMUNITY ============ */
@@ -412,33 +399,33 @@
     }
 
     .community-box {
-      max-width: 720px;
+      max-width: 700px;
       margin: 0 auto;
       text-align: center;
-      padding: 60px 40px;
+      padding: 50px 36px;
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 20px;
       background: var(--bg-card);
     }
 
     .community-box h3 {
-      font-size: clamp(28px, 4vw, 44px);
-      line-height: 1.1;
-      margin-bottom: 20px;
-      font-weight: 600;
-      letter-spacing: -.03em;
+      font-size: clamp(24px, 3.5vw, 36px);
+      line-height: 1.15;
+      margin-bottom: 16px;
+      font-weight: 700;
+      letter-spacing: -.02em;
     }
 
     .community-box h3 .light {
       color: var(--text-secondary);
-      font-weight: 200;
+      font-weight: 300;
     }
 
     .community-box p {
       max-width: 460px;
-      margin: 0 auto 32px;
+      margin: 0 auto 26px;
       color: var(--text-secondary);
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.55;
     }
 
@@ -452,16 +439,16 @@
     }
 
     .social-card {
-      padding: 28px 20px;
+      padding: 24px 18px;
       border: 1px solid var(--border);
-      border-radius: 16px;
+      border-radius: 14px;
       background: var(--bg-card);
       transition: all .25s ease;
       display: flex;
       flex-direction: column;
       align-items: center;
       text-align: center;
-      gap: 14px;
+      gap: 12px;
     }
 
     .social-card:hover {
@@ -471,8 +458,8 @@
     }
 
     .social-icon {
-      width: 32px;
-      height: 32px;
+      width: 30px;
+      height: 30px;
       display: grid;
       place-items: center;
       color: var(--text-secondary);
@@ -497,23 +484,21 @@
     .social-card strong {
       display: block;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text);
-      letter-spacing: -.005em;
     }
 
     .social-card span {
       color: var(--text-tertiary);
       font-size: 11.5px;
-      letter-spacing: .01em;
     }
 
     /* ============ FOOTER ============ */
     footer {
-      padding: 40px 0;
+      padding: 36px 0;
       border-top: 1px solid var(--border);
       color: var(--text-tertiary);
-      font-size: 12px;
+      font-size: 12.5px;
     }
 
     .footer-inner {
@@ -529,9 +514,8 @@
       align-items: center;
       gap: 8px;
       color: var(--text-secondary);
-      font-weight: 400;
-      letter-spacing: .02em;
-      font-size: 12px;
+      font-weight: 500;
+      font-size: 12.5px;
     }
 
     .footer-logo {
@@ -543,29 +527,45 @@
 
     /* ============ MOBILE ============ */
     @media (max-width: 900px) {
-      .hero-banner { height: 45vh; min-height: 280px; }
-      .hero-content { margin-top: -60px; }
-      .hero-logo { width: 110px; height: 110px; }
       .identity-grid { grid-template-columns: 1fr; }
       .social-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
-    @media (max-width: 800px) {
+    @media (max-width: 700px) {
       .container { width: min(calc(100% - 32px), var(--max)); }
       nav { display: none; }
-      section { padding: 70px 0; }
-      .live-card { padding: 32px 24px; }
-      .community-box { padding: 40px 24px; }
+      section { padding: 60px 0; }
+
+      .channel-banner { height: 130px; }
+      .channel-profile { margin-top: -40px; padding-bottom: 30px; }
+
+      .channel-profile-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .channel-avatar {
+        width: 90px;
+        height: 90px;
+        border-width: 3px;
+      }
+
+      .channel-name { font-size: 24px; }
+      .channel-meta { font-size: 13px; }
+
+      .live-card { padding: 28px 22px; }
+      .community-box { padding: 36px 22px; }
     }
 
     @media (max-width: 480px) {
-      .hero-banner { height: 38vh; min-height: 240px; }
-      .hero-content { margin-top: -50px; padding-bottom: 60px; }
-      .hero-logo { width: 90px; height: 90px; border-width: 3px; }
-      .actions { flex-direction: column; width: 100%; }
+      .channel-banner { height: 110px; }
+      .channel-avatar { width: 80px; height: 80px; }
+      .channel-name { font-size: 22px; }
       .button { width: 100%; }
+      .channel-actions { flex-direction: column; }
       .social-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
-      .social-card { padding: 22px 14px; }
+      .social-card { padding: 20px 12px; }
     }
   </style>
 </head>
@@ -595,44 +595,57 @@
 
   <main>
 
-    <!-- HERO CON BANNER PROTAGONISTA -->
-    <section class="hero">
-      <div class="hero-banner">
+    <!-- BANNER + PERFIL (ESTILO YOUTUBE) -->
+    <section class="channel-header">
+
+      <!-- FRANJA DEL BANNER (fina, como YouTube) -->
+      <div class="channel-banner">
         <img
           src="https://yt3.googleusercontent.com/x1z3Imvyu9j6GbD5f9tl7bBLZvxp9EvVlK9FqELCQaN_cxSRLgcKcHRthu-AOdJ1imrBynz0=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
           alt="LLANERIAS — Banner"
         >
       </div>
 
-      <div class="container hero-content">
-        <img
-          src="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj"
-          alt="LLANERIAS"
-          class="hero-logo"
-        >
+      <!-- PERFIL (logo redondo solapado + info) -->
+      <div class="container channel-profile">
+        <div class="channel-profile-inner">
+          <img
+            src="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj"
+            alt="LLANERIAS"
+            class="channel-avatar"
+          >
 
-        <div class="hero-eyebrow">Música · Cultura · Tradición</div>
+          <div class="channel-info">
+            <h1 class="channel-name">LLANERIAS</div>
 
-        <h1>
-          El llano <span class="light">no tiene fronteras.</span>
-        </h1>
+            <div class="channel-meta">
+              <span>@Llanerias</span>
+              <span class="dot"></span>
+              <span>Música · Cultura · Tradición</span>
+            </div>
 
-        <p class="hero-subtitle">
-          Música, historias y tradición del Llano Colombo-Venezolano.
-          <strong>LLANERIAS</strong> conecta a una comunidad que no conoce límites.
-        </p>
+            <p class="channel-motto">
+              <strong>El llano no tiene fronteras.</strong>
+              Música, historias y tradición del Llano Colombo-Venezolano.
+            </p>
 
-        <div class="actions">
-          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-youtube">
-            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            Suscribirse
-          </a>
-          <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-whatsapp">
-            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
-            Comunidad
-          </a>
+            <div class="channel-actions">
+              <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-youtube">
+                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                Suscribirse
+              </a>
+              <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-whatsapp">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                Comunidad
+              </a>
+              <a href="#redes" class="button button-secondary">
+                Sígueme en redes
+              </a>
+            </div>
+          </div>
         </div>
       </div>
+
     </section>
 
     <!-- LIVE -->
