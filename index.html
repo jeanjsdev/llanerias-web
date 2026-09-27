@@ -6,35 +6,37 @@
 
   <title>LLANERIAS — El llano no tiene fronteras</title>
   <meta name="description" content="LLANERIAS — Música, cultura y tradición del Llano Colombo-Venezolano. Jean Luis Oropeza.">
-  <meta name="theme-color" content="#0b0b0b">
+  <meta name="theme-color" content="#0a0a0a">
   <meta property="og:title" content="LLANERIAS — El llano no tiene fronteras">
   <meta property="og:description" content="Música, cultura y tradición del Llano Colombo-Venezolano.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://llanerias.com">
-  <meta property="og:image" content="https://yt3.googleusercontent.com/ytc/APkrFKb5WJ0i2WJ6h4Kq0q5L9n8m7b6v5c4x3z2y1w=s900-c-k-c0x00ffffff-no-rj">
+  <meta property="og:image" content="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj">
 
   <style>
     :root {
-      --black: #0f0f0f;
-      --black-soft: #1a1a1a;
-      --black-card: #212121;
-      --white: #f1f1f1;
-      --muted: #aaaaaa;
-      --gold: #c99a4a;
-      --gold-light: #e4bf76;
-      --red: #ff0000;
-      --border: rgba(255,255,255,.10);
-      --max: 1180px;
+      --bg: #0a0a0a;
+      --bg-soft: #141414;
+      --card: #181818;
+      --card-hover: #222;
+      --white: #ffffff;
+      --gray: #a0a0a0;
+      --gray-light: #d0d0d0;
+      --accent: #ff0033;
+      --accent-2: #ff4d6d;
+      --border: rgba(255,255,255,.08);
+      --max: 1200px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     body {
-      background: var(--black);
+      background: var(--bg);
       color: var(--white);
-      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
       line-height: 1.6;
+      overflow-x: hidden;
     }
 
     a { color: inherit; text-decoration: none; }
@@ -50,13 +52,14 @@
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(15,15,15,.92);
-      backdrop-filter: blur(16px);
+      background: rgba(10,10,10,.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      min-height: 64px;
+      min-height: 68px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,330 +69,543 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 20px;
+      gap: 12px;
+      font-size: 18px;
       font-weight: 800;
-      letter-spacing: .05em;
+      letter-spacing: .12em;
     }
 
-    .brand-mark {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(201,154,74,.7);
+    .brand-logo {
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      display: grid;
-      place-items: center;
-      color: var(--gold-light);
-      font-size: 18px;
+      object-fit: cover;
+      border: 2px solid rgba(255,255,255,.15);
+      box-shadow: 0 0 20px rgba(255,0,51,.3);
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 26px;
     }
 
     nav a {
-      color: #d7d3cc;
+      color: var(--gray-light);
       font-size: 14px;
+      font-weight: 500;
       transition: .2s ease;
     }
 
-    nav a:hover { color: var(--gold-light); }
+    nav a:hover { color: var(--white); }
 
     .nav-button {
-      padding: 8px 16px;
-      border: 1px solid rgba(201,154,74,.7);
+      padding: 9px 18px;
+      border: 1px solid rgba(255,255,255,.2);
       border-radius: 999px;
-      color: var(--gold-light);
+      color: var(--white);
       font-size: 13px;
+      font-weight: 600;
+      transition: .2s ease;
+    }
+
+    .nav-button:hover {
+      background: var(--white);
+      color: var(--bg);
     }
 
     /* ============ HERO ============ */
     .hero {
-      min-height: 70vh;
+      min-height: 100vh;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
-      padding-top: 80px;
+      padding: 120px 0 80px;
       background:
-        radial-gradient(circle at 75% 40%, rgba(201,154,74,.14), transparent 32%),
-        linear-gradient(120deg, #0f0f0f 0%, #1a1508 52%, #0f0f0f 100%);
+        radial-gradient(circle at 20% 30%, rgba(255,0,51,.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255,77,109,.10), transparent 45%),
+        linear-gradient(135deg, #0a0a0a 0%, #150509 50%, #0a0a0a 100%);
     }
 
-    .hero::after {
+    .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 65%, var(--black) 100%);
+      background-image:
+        linear-gradient(rgba(255,255,255,.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.02) 1px, transparent 1px);
+      background-size: 60px 60px;
       pointer-events: none;
     }
 
-    .hero-content {
+    .hero-inner {
       position: relative;
       z-index: 2;
-      max-width: 850px;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
-    .eyebrow {
-      color: var(--gold-light);
+    .hero-content { max-width: 700px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255,0,51,.12);
+      border: 1px solid rgba(255,0,51,.3);
+      color: var(--accent-2);
       font-size: 12px;
       font-weight: 700;
-      letter-spacing: .22em;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
+    }
+
+    .hero-badge .dot {
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--accent);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
     }
 
     h1 {
-      font-size: clamp(48px, 10vw, 110px);
+      font-size: clamp(56px, 11vw, 140px);
       line-height: .85;
       letter-spacing: -.05em;
       font-weight: 900;
-      margin-bottom: 22px;
+      margin-bottom: 26px;
     }
 
     .hero-title-line { display: block; }
-    .hero-title-line:last-child { color: var(--gold-light); }
 
-    .hero-text {
-      max-width: 600px;
-      color: #c8c4bc;
-      font-size: clamp(16px, 2vw, 20px);
-      line-height: 1.5;
-      margin-bottom: 30px;
+    .hero-title-line.accent {
+      background: linear-gradient(135deg, #ff0033, #ff4d6d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-motto {
+      font-size: clamp(18px, 2.2vw, 24px);
+      font-weight: 300;
+      color: var(--gray-light);
+      margin-bottom: 32px;
+      font-style: italic;
+      letter-spacing: .01em;
+      border-left: 3px solid var(--accent);
+      padding-left: 18px;
+    }
+
+    .hero-motto strong {
+      color: var(--white);
+      font-weight: 700;
+      font-style: normal;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
+      gap: 14px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 22px;
+      min-height: 52px;
+      padding: 0 26px;
       border-radius: 999px;
       font-weight: 700;
       font-size: 15px;
-      transition: transform .2s ease, background .2s ease;
-      gap: 8px;
+      transition: all .25s ease;
+      gap: 10px;
+      border: none;
+      cursor: pointer;
     }
 
-    .button:hover { transform: translateY(-2px); }
+    .button:hover { transform: translateY(-3px); }
 
     .button-primary {
-      background: var(--gold);
-      color: #0b0b0b;
+      background: linear-gradient(135deg, #ff0033, #ff4d6d);
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(255,0,51,.35);
+    }
+
+    .button-primary:hover {
+      box-shadow: 0 12px 40px rgba(255,0,51,.5);
     }
 
     .button-secondary {
       border: 1px solid rgba(255,255,255,.2);
       background: rgba(255,255,255,.04);
-    }
-
-    .button-youtube {
-      background: var(--red);
       color: #fff;
     }
 
-    /* ============ SECTION ============ */
-    section { padding: 90px 0; }
+    .button-secondary:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.4);
+    }
+
+    /* HERO LOGO */
+    .hero-logo-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-logo-ring {
+      position: relative;
+      width: 320px;
+      height: 320px;
+      display: grid;
+      place-items: center;
+    }
+
+    .hero-logo-ring::before {
+      content: "";
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #ff0033, #ff4d6d, #ff0033);
+      animation: spin 8s linear infinite;
+      filter: blur(30px);
+      opacity: .5;
+    }
+
+    .hero-logo-ring::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.15);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .hero-logo {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid rgba(255,255,255,.1);
+      box-shadow: 0 20px 60px rgba(0,0,0,.6);
+    }
+
+    /* ============ SECTIONS ============ */
+    section { padding: 110px 0; position: relative; }
 
     .section-label {
-      color: var(--gold-light);
+      color: var(--accent-2);
       text-transform: uppercase;
-      letter-spacing: .18em;
+      letter-spacing: .22em;
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .section-title {
-      font-size: clamp(32px, 5vw, 56px);
+      font-size: clamp(36px, 5.5vw, 64px);
       line-height: 1;
       letter-spacing: -.04em;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
+      font-weight: 800;
     }
 
     .section-description {
-      color: var(--muted);
+      color: var(--gray);
       max-width: 650px;
       font-size: 17px;
     }
 
     /* ============ LIVE ============ */
-    .live { background: #0a0a0a; }
+    .live {
+      background: var(--bg-soft);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
 
     .live-card {
-      margin-top: 40px;
+      margin-top: 50px;
       border: 1px solid var(--border);
-      border-radius: 24px;
+      border-radius: 28px;
       overflow: hidden;
-      background: linear-gradient(135deg, rgba(201,154,74,.12), rgba(255,255,255,.02));
+      background: linear-gradient(135deg, rgba(255,0,51,.08), rgba(255,255,255,.02));
+      position: relative;
     }
 
     .live-inner {
-      padding: 40px;
+      padding: 50px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 24px;
+      gap: 30px;
       align-items: center;
     }
 
     .live-status {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       color: #fff;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: .12em;
+      letter-spacing: .15em;
     }
 
     .live-dot {
-      width: 9px; height: 9px;
-      background: var(--red);
+      width: 10px; height: 10px;
+      background: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 16px rgba(255,0,0,.8);
+      box-shadow: 0 0 16px var(--accent);
+      animation: pulse 1.5s infinite;
     }
 
     .live h3 {
-      font-size: clamp(24px, 4vw, 42px);
-      margin-bottom: 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      margin-bottom: 12px;
+      font-weight: 800;
     }
 
-    .live p { color: var(--muted); max-width: 650px; }
+    .live p { color: var(--gray); max-width: 650px; }
 
     /* ============ IDENTITY ============ */
     .identity-grid {
-      margin-top: 50px;
+      margin-top: 55px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
+      gap: 20px;
     }
 
     .identity-card {
-      padding: 28px;
-      min-height: 200px;
+      padding: 32px;
+      min-height: 220px;
       border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--black-soft);
-      transition: .2s ease;
+      border-radius: 24px;
+      background: var(--card);
+      transition: all .3s ease;
+      position: relative;
+      overflow: hidden;
     }
+
+    .identity-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 3px;
+      background: linear-gradient(90deg, #ff0033, #ff4d6d);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s ease;
+    }
+
+    .identity-card:hover::before { transform: scaleX(1); }
 
     .identity-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(201,154,74,.4);
+      transform: translateY(-6px);
+      background: var(--card-hover);
+      border-color: rgba(255,0,51,.3);
     }
 
-    .identity-icon { font-size: 28px; margin-bottom: 20px; }
-    .identity-card h3 { font-size: 20px; margin-bottom: 8px; }
-    .identity-card p { color: var(--muted); font-size: 15px; }
+    .identity-icon { font-size: 32px; margin-bottom: 22px; }
+    .identity-card h3 { font-size: 22px; margin-bottom: 10px; font-weight: 700; }
+    .identity-card p { color: var(--gray); font-size: 15px; }
 
     /* ============ COMMUNITY ============ */
     .community {
-      background: linear-gradient(120deg, #1a1508, #0f0f0f);
+      background:
+        radial-gradient(circle at 50% 50%, rgba(255,0,51,.15), transparent 50%),
+        linear-gradient(135deg, #0f0f0f, #150509);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
 
     .community-box {
       margin-top: 40px;
-      padding: 50px;
-      border: 1px solid var(--border);
-      border-radius: 26px;
+      padding: 70px 40px;
+      border: 1px solid rgba(255,0,51,.2);
+      border-radius: 32px;
       text-align: center;
+      background: rgba(255,255,255,.02);
+      backdrop-filter: blur(10px);
     }
 
     .community-box h3 {
-      font-size: clamp(28px, 4vw, 48px);
+      font-size: clamp(36px, 6vw, 72px);
       line-height: 1;
-      margin-bottom: 18px;
+      margin-bottom: 24px;
+      font-weight: 900;
+      letter-spacing: -.03em;
+      background: linear-gradient(135deg, #ffffff, #ff4d6d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .community-box p {
       max-width: 650px;
-      margin: 0 auto 26px;
-      color: var(--muted);
-      font-size: 17px;
+      margin: 0 auto 34px;
+      color: var(--gray);
+      font-size: 18px;
     }
 
     /* ============ SOCIAL ============ */
     .social-grid {
-      margin-top: 40px;
+      margin-top: 55px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
     }
 
     .social-card {
-      padding: 22px;
+      padding: 28px 22px;
       border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--black-card);
-      transition: .2s ease;
+      border-radius: 20px;
+      background: var(--card);
+      transition: all .3s ease;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
     }
+
+    .social-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 0%, var(--brand-color, #ff0033), transparent 70%);
+      opacity: 0;
+      transition: opacity .3s ease;
+    }
+
+    .social-card:hover::before { opacity: .15; }
 
     .social-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(201,154,74,.5);
-      background: #262626;
+      transform: translateY(-6px);
+      border-color: var(--brand-color, #ff0033);
+      box-shadow: 0 20px 40px -20px var(--brand-color, #ff0033);
     }
 
-    .social-card .icon { font-size: 24px; margin-bottom: 8px; }
-    .social-card strong { display: block; font-size: 17px; }
-    .social-card span { color: var(--muted); font-size: 13px; }
+    .social-icon {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: var(--brand-color, #ff0033);
+      transition: transform .3s ease;
+    }
+
+    .social-card:hover .social-icon { transform: scale(1.1); }
+
+    .social-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: #fff;
+    }
+
+    .social-card strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .social-card span {
+      color: var(--gray);
+      font-size: 13px;
+    }
 
     /* ============ FOOTER ============ */
     footer {
-      padding: 40px 0;
+      padding: 50px 0;
       border-top: 1px solid var(--border);
-      color: var(--muted);
+      color: var(--gray);
       font-size: 14px;
     }
 
     .footer-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
       gap: 20px;
       flex-wrap: wrap;
     }
 
     .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       color: var(--white);
       font-weight: 800;
-      letter-spacing: .05em;
+      letter-spacing: .1em;
+    }
+
+    .footer-logo {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     /* ============ MOBILE ============ */
+    @media (max-width: 900px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero-content { max-width: 100%; }
+      .hero-motto { border-left: none; padding-left: 0; }
+      .actions { justify-content: center; }
+
+      .hero-logo-ring {
+        width: 220px;
+        height: 220px;
+      }
+
+      .identity-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 800px) {
       .container { width: min(calc(100% - 28px), var(--max)); }
       header { position: absolute; }
       nav { display: none; }
-      .hero { min-height: 60vh; }
-      h1 { font-size: clamp(44px, 16vw, 80px); }
-      section { padding: 60px 0; }
+      section { padding: 70px 0; }
+      h1 { font-size: clamp(48px, 16vw, 90px); }
 
       .live-inner {
         grid-template-columns: 1fr;
-        padding: 28px;
+        padding: 32px;
       }
 
-      .identity-grid { grid-template-columns: 1fr; }
-      .social-grid { grid-template-columns: repeat(2, 1fr); }
-      .community-box { padding: 32px 20px; }
+      .community-box { padding: 40px 22px; }
     }
 
     @media (max-width: 480px) {
-      .social-grid { grid-template-columns: 1fr; }
-      .actions { flex-direction: column; }
+      .actions { flex-direction: column; width: 100%; }
       .button { width: 100%; }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -399,7 +615,11 @@
   <header>
     <div class="container nav">
       <a href="#" class="brand">
-        <span class="brand-mark">🐎</span>
+        <img
+          src="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj"
+          alt="LLANERIAS Logo"
+          class="brand-logo"
+        >
         <span>LLANERIAS</span>
       </a>
 
@@ -417,27 +637,44 @@
 
     <!-- HERO -->
     <section class="hero">
-      <div class="container hero-content">
-        <div class="eyebrow">Música · Cultura · Tradición</div>
+      <div class="container hero-inner">
 
-        <h1>
-          <span class="hero-title-line">LLANE</span>
-          <span class="hero-title-line">RIAS</span>
-        </h1>
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Música · Cultura · Tradición
+          </div>
 
-        <p class="hero-text">
-          El Llano Colombo-Venezolano llevado al mundo a través de la música,
-          las historias y la voz de una nueva generación.
-        </p>
+          <h1>
+            <span class="hero-title-line">LLANE</span>
+            <span class="hero-title-line accent">RIAS</span>
+          </h1>
 
-        <div class="actions">
-          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-youtube">
-            ▶ Suscribirse en YouTube
-          </a>
-          <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-secondary">
-            Unirme a la comunidad
-          </a>
+          <p class="hero-motto">
+            <strong>El llano no tiene fronteras.</strong><br>
+            Música, historias y tradición del Llano Colombo-Venezolano.
+          </p>
+
+          <div class="actions">
+            <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-primary">
+              ▶ Suscribirse en YouTube
+            </a>
+            <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-secondary">
+              Unirme a la comunidad
+            </a>
+          </div>
         </div>
+
+        <div class="hero-logo-wrap">
+          <div class="hero-logo-ring">
+            <img
+              src="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj"
+              alt="LLANERIAS"
+              class="hero-logo"
+            >
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -528,50 +765,83 @@
 
         <div class="social-grid">
 
-          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">▶️</span>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="social-card" style="--brand-color:#ff0000">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M23.5 6.2c-.3-1.1-1.1-1.9-2.2-2.2C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.3.5C1.6 4.3.8 5.1.5 6.2.1 8.1.1 12 .1 12s0 3.9.4 5.8c.3 1.1 1.1 1.9 2.2 2.2 1.9.5 9.3.5 9.3.5s7.4 0 9.3-.5c1.1-.3 1.9-1.1 2.2-2.2.4-1.9.4-5.8.4-5.8s0-3.9-.4-5.8zM9.5 15.5v-7l6.3 3.5-6.3 3.5z"/></svg>
+            </div>
             <strong>YouTube</strong>
-            <span>Videos · Música · LIVE</span>
+            <span>@Llanerias</span>
           </a>
 
-          <a href="https://www.tiktok.com/@jeanluisoropeza?_r=1&_t=ZS-9A4UDjfMuJw" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">🎵</span>
+          <!-- WhatsApp -->
+          <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="social-card" style="--brand-color:#25D366">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.2-.5 0-.2 0-.4-.1-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 5 4.3 2.5 1 3 .8 3.5.7.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.3c1.4.8 3.1 1.3 4.8 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+            </div>
+            <strong>WhatsApp</strong>
+            <span>Canal oficial</span>
+          </a>
+
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@jeanluisoropeza?_r=1&_t=ZS-9A4UDjfMuJw" target="_blank" rel="noopener" class="social-card" style="--brand-color:#000000">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M19.6 6.7c-1.1-.8-1.8-2-2-3.4h-3.1v13.2c0 1.7-1.4 3.1-3.1 3.1-1.7 0-3.1-1.4-3.1-3.1 0-1.7 1.4-3.1 3.1-3.1.3 0 .6 0 .9.1v-3.2c-.3 0-.6-.1-.9-.1-3.5 0-6.3 2.8-6.3 6.3s2.8 6.3 6.3 6.3c3.5 0 6.3-2.8 6.3-6.3V9.6c1 .7 2.3 1.2 3.6 1.2V7.6c-.9 0-1.7-.3-2.4-.9z"/></svg>
+            </div>
             <strong>TikTok</strong>
             <span>@jeanluisoropeza</span>
           </a>
 
-          <a href="https://www.instagram.com/jeanluisoropeza?stkn=MWY2MmRhMDdmOXgwaQ==" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">📸</span>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/jeanluisoropeza?stkn=MWY2MmRhMDdmOXgwaQ==" target="_blank" rel="noopener" class="social-card" style="--brand-color:#E1306C">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4 1.3-.1 1.7-.1 4.9-.1zM12 0C8.7 0 8.3 0 7 .1 5.7.1 4.9.4 4.1.7c-.8.3-1.5.7-2.2 1.4C1.2 2.8.8 3.5.5 4.3.2 5.1 0 5.9 0 7.2.1 8.3 0 8.7 0 12s0 3.7.1 5c.1 1.3.3 2.1.6 2.9.3.8.7 1.5 1.4 2.2.7.7 1.4 1.1 2.2 1.4.8.3 1.6.5 2.9.6 1.3.1 1.7.1 5 .1s3.7 0 5-.1c1.3-.1 2.1-.3 2.9-.6.8-.3 1.5-.7 2.2-1.4.7-.7 1.1-1.4 1.4-2.2.3-.8.5-1.6.6-2.9.1-1.3.1-1.7.1-5s0-3.7-.1-5c-.1-1.3-.3-2.1-.6-2.9-.3-.8-.7-1.5-1.4-2.2C21.5 1 20.8.6 20 .3c-.8-.3-1.6-.5-2.9-.6C15.7 0 15.3 0 12 0zm0 5.8c-3.4 0-6.2 2.8-6.2 6.2s2.8 6.2 6.2 6.2 6.2-2.8 6.2-6.2-2.8-6.2-6.2-6.2zm0 10.2c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4zm6.4-10.4c0 .8-.6 1.4-1.4 1.4s-1.4-.6-1.4-1.4.6-1.4 1.4-1.4 1.4.6 1.4 1.4z"/></svg>
+            </div>
             <strong>Instagram</strong>
             <span>@jeanluisoropeza</span>
           </a>
 
-          <a href="https://x.com/JeanLuisOropeza" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">🐦</span>
+          <!-- X -->
+          <a href="https://x.com/JeanLuisOropeza" target="_blank" rel="noopener" class="social-card" style="--brand-color:#000000">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M18.2 2h3.3l-7.2 8.2L23 22h-6.6l-5.2-6.8L5.2 22H1.9l7.7-8.8L1 2h6.8l4.7 6.2L18.2 2zm-1.2 18h1.8L7.1 3.9H5.2L17 20z"/></svg>
+            </div>
             <strong>X</strong>
             <span>@JeanLuisOropeza</span>
           </a>
 
-          <a href="https://www.facebook.com/share/1Ekuao6SBn" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">👤</span>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/share/1Ekuao6SBn" target="_blank" rel="noopener" class="social-card" style="--brand-color:#1877F2">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/></svg>
+            </div>
             <strong>Facebook</strong>
             <span>Jean Luis Oropeza</span>
           </a>
 
-          <a href="https://www.facebook.com/share/1LrNZ4FD66/" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">⭐</span>
+          <!-- Fan Page -->
+          <a href="https://www.facebook.com/share/1LrNZ4FD66/" target="_blank" rel="noopener" class="social-card" style="--brand-color:#1877F2">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M24 12c0-6.6-5.4-12-12-12S0 5.4 0 12c0 6 4.4 11 10.1 11.9v-8.4H7.1V12h3V9.4c0-3 1.8-4.6 4.5-4.6 1.3 0 2.7.2 2.7.2v2.9h-1.5c-1.5 0-1.9.9-1.9 1.8V12h3.3l-.5 3.5h-2.8v8.4C19.6 23 24 18 24 12z"/></svg>
+            </div>
             <strong>Fan Page</strong>
             <span>Llanerias</span>
           </a>
 
-          <a href="https://www.snapchat.com/add/jeanluisoropeza?share_id=r3MTzC8GO0k&locale=es-ES" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">👻</span>
+          <!-- Snapchat -->
+          <a href="https://www.snapchat.com/add/jeanluisoropeza?share_id=r3MTzC8GO0k&locale=es-ES" target="_blank" rel="noopener" class="social-card" style="--brand-color:#FFFC00">
+            <div class="social-icon" style="color:#000">
+              <svg viewBox="0 0 24 24" fill="#000"><path d="M12.2 2c2.7 0 4.9 2.2 4.9 4.9v2c.6.3 1.4.4 1.8.4.5 0 1.2-.1 1.2-.6 0-.5-.6-.7-.6-1.2 0-.5.5-.9 1-.9.6 0 1.1.5 1.1 1.1 0 1.4-1.5 2.3-2.9 2.7.4 1.5 1.5 4 3.8 4.8.2.1.3.2.3.4 0 .6-1.7 1.2-2.5 1.3-.1.4-.2 1-.5 1-.4 0-1-.3-1.8-.3-.9 0-1.4.2-2.1.6-.7.4-1.5.8-2.7.8s-2-.4-2.7-.8c-.7-.4-1.2-.6-2.1-.6-.8 0-1.4.3-1.8.3-.3 0-.4-.6-.5-1-.8-.1-2.5-.7-2.5-1.3 0-.2.1-.3.3-.4 2.3-.8 3.4-3.3 3.8-4.8-1.4-.4-2.9-1.3-2.9-2.7 0-.6.5-1.1 1.1-1.1.5 0 1 .4 1 .9 0 .5-.6.7-.6 1.2 0 .5.7.6 1.2.6.4 0 1.2-.1 1.8-.4v-2C7.3 4.2 9.5 2 12.2 2z"/></svg>
+            </div>
             <strong>Snapchat</strong>
             <span>@jeanluisoropeza</span>
           </a>
 
-          <a href="https://www.threads.com/@jeanluisoropeza?invite=0" target="_blank" rel="noopener" class="social-card">
-            <span class="icon">🧵</span>
+          <!-- Threads -->
+          <a href="https://www.threads.com/@jeanluisoropeza?invite=0" target="_blank" rel="noopener" class="social-card" style="--brand-color:#000000">
+            <div class="social-icon">
+              <svg viewBox="0 0 24 24"><path d="M12.2 2C6.6 2 2.5 6 2.5 12s4.1 10 9.7 10c4.5 0 7.9-2.5 7.9-6.4 0-3-2-5.1-5.2-5.4-.2-2.2-1.5-3.6-3.7-3.6-1.9 0-3.2 1-3.7 2.6l2 .9c.2-.8.8-1.3 1.7-1.3 1.1 0 1.6.6 1.6 2-1 .1-2 .3-2.9.7-1.9.8-3 2.2-3 4 0 2.3 1.8 4 4.3 4 2.6 0 4.4-1.5 4.7-4h-2c-.2 1.3-1 2-2.6 2-1.3 0-2.3-.8-2.3-2.1 0-1.4 1.2-2.3 3.4-2.6.4-.1.9-.1 1.4-.1v.3c0 2.7 1.6 4.5 4 4.5 1.5 0 2.6-.6 3.2-1.6.6-1 .9-2.2.9-3.5 0-4.6-3.3-7.9-8.1-7.9zm-.1 8.6c-.4 0-.7 0-1.1.1-1.7.2-2.8 1-2.8 2.1 0 .9.7 1.5 1.7 1.5 1.5 0 2.5-1.1 2.5-3v-.7c-.1 0-.2 0-.3 0z"/></svg>
+            </div>
             <strong>Threads</strong>
             <span>@jeanluisoropeza</span>
           </a>
@@ -584,7 +854,14 @@
 
   <footer>
     <div class="container footer-inner">
-      <div class="footer-brand">🐎 LLANERIAS</div>
+      <div class="footer-brand">
+        <img
+          src="https://yt3.googleusercontent.com/ytc/AIdro_m-NKqQxjktd6VdZzs9413AFn_BSTcFiTVurP3dzUNBO_8=s160-c-k-c0x00ffffff-no-rj"
+          alt="LLANERIAS"
+          class="footer-logo"
+        >
+        LLANERIAS
+      </div>
       <div>© 2026 LLANERIAS · Jean Luis Oropeza</div>
     </div>
   </footer>
