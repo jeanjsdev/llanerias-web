@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,110 +5,87 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>LLANERIAS — El llano no tiene fronteras</title>
-
-  <meta
-    name="description"
-    content="LLANERIAS — Música, cultura y tradición del Llano Colombo-Venezolano. Jean Luis Oropeza."
-  >
-
+  <meta name="description" content="LLANERIAS — Música, cultura y tradición del Llano Colombo-Venezolano. Jean Luis Oropeza.">
   <meta name="theme-color" content="#0b0b0b">
-
   <meta property="og:title" content="LLANERIAS — El llano no tiene fronteras">
-  <meta
-    property="og:description"
-    content="Música, cultura y tradición del Llano Colombo-Venezolano."
-  >
+  <meta property="og:description" content="Música, cultura y tradición del Llano Colombo-Venezolano.">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://llanerias.com">
+  <meta property="og:image" content="https://yt3.googleusercontent.com/ytc/APkrFKb5WJ0i2WJ6h4Kq0q5L9n8m7b6v5c4x3z2y1w=s900-c-k-c0x00ffffff-no-rj">
 
   <style>
     :root {
-      --black: #090909;
-      --black-soft: #111111;
-      --white: #f5f2eb;
-      --muted: #aaa59c;
+      --black: #0f0f0f;
+      --black-soft: #1a1a1a;
+      --black-card: #212121;
+      --white: #f1f1f1;
+      --muted: #aaaaaa;
       --gold: #c99a4a;
       --gold-light: #e4bf76;
+      --red: #ff0000;
       --border: rgba(255,255,255,.10);
       --max: 1180px;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background: var(--black);
       color: var(--white);
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
       line-height: 1.6;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
     .container {
       width: min(calc(100% - 40px), var(--max));
       margin: auto;
     }
 
-    /* HEADER */
-
+    /* ============ HEADER ============ */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       z-index: 100;
-      background: rgba(9,9,9,.82);
+      background: rgba(15,15,15,.92);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
 
     .nav {
-      min-height: 76px;
+      min-height: 64px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 21px;
+      gap: 10px;
+      font-size: 20px;
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: .05em;
     }
 
     .brand-mark {
-      width: 40px;
-      height: 40px;
+      width: 40px; height: 40px;
       border: 1px solid rgba(201,154,74,.7);
       border-radius: 50%;
       display: grid;
       place-items: center;
       color: var(--gold-light);
-      font-size: 19px;
+      font-size: 18px;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 28px;
+      gap: 24px;
     }
 
     nav a {
@@ -118,99 +94,91 @@
       transition: .2s ease;
     }
 
-    nav a:hover {
-      color: var(--gold-light);
-    }
+    nav a:hover { color: var(--gold-light); }
 
     .nav-button {
-      padding: 10px 17px;
+      padding: 8px 16px;
       border: 1px solid rgba(201,154,74,.7);
       border-radius: 999px;
       color: var(--gold-light);
+      font-size: 13px;
     }
 
-    /* HERO */
-
+    /* ============ HERO ============ */
     .hero {
-      min-height: 100vh;
+      min-height: 70vh;
       display: flex;
       align-items: center;
       position: relative;
       overflow: hidden;
+      padding-top: 80px;
       background:
-        radial-gradient(circle at 75% 40%, rgba(201,154,74,.18), transparent 32%),
-        linear-gradient(120deg, #080808 0%, #12100c 52%, #080808 100%);
+        radial-gradient(circle at 75% 40%, rgba(201,154,74,.14), transparent 32%),
+        linear-gradient(120deg, #0f0f0f 0%, #1a1508 52%, #0f0f0f 100%);
     }
 
     .hero::after {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to bottom, transparent 65%, var(--black) 100%);
+      background: linear-gradient(to bottom, transparent 65%, var(--black) 100%);
       pointer-events: none;
     }
 
     .hero-content {
       position: relative;
       z-index: 2;
-      padding-top: 90px;
       max-width: 850px;
     }
 
     .eyebrow {
       color: var(--gold-light);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: .22em;
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: clamp(64px, 12vw, 150px);
-      line-height: .82;
-      letter-spacing: -.06em;
+      font-size: clamp(48px, 10vw, 110px);
+      line-height: .85;
+      letter-spacing: -.05em;
       font-weight: 900;
-      margin-bottom: 28px;
+      margin-bottom: 22px;
     }
 
-    .hero-title-line {
-      display: block;
-    }
-
-    .hero-title-line:last-child {
-      color: var(--gold-light);
-    }
+    .hero-title-line { display: block; }
+    .hero-title-line:last-child { color: var(--gold-light); }
 
     .hero-text {
-      max-width: 650px;
+      max-width: 600px;
       color: #c8c4bc;
-      font-size: clamp(18px, 2vw, 23px);
+      font-size: clamp(16px, 2vw, 20px);
       line-height: 1.5;
-      margin-bottom: 35px;
+      margin-bottom: 30px;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 12px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 52px;
-      padding: 0 24px;
+      min-height: 48px;
+      padding: 0 22px;
       border-radius: 999px;
       font-weight: 700;
+      font-size: 15px;
       transition: transform .2s ease, background .2s ease;
+      gap: 8px;
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
+    .button:hover { transform: translateY(-2px); }
 
     .button-primary {
       background: var(--gold);
@@ -222,11 +190,13 @@
       background: rgba(255,255,255,.04);
     }
 
-    /* SECTION */
-
-    section {
-      padding: 110px 0;
+    .button-youtube {
+      background: var(--red);
+      color: #fff;
     }
+
+    /* ============ SECTION ============ */
+    section { padding: 90px 0; }
 
     .section-label {
       color: var(--gold-light);
@@ -234,42 +204,38 @@
       letter-spacing: .18em;
       font-size: 12px;
       font-weight: 700;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .section-title {
-      font-size: clamp(36px, 6vw, 68px);
+      font-size: clamp(32px, 5vw, 56px);
       line-height: 1;
       letter-spacing: -.04em;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .section-description {
       color: var(--muted);
       max-width: 650px;
-      font-size: 18px;
+      font-size: 17px;
     }
 
-    /* LIVE */
-
-    .live {
-      background: #0d0d0d;
-    }
+    /* ============ LIVE ============ */
+    .live { background: #0a0a0a; }
 
     .live-card {
-      margin-top: 45px;
+      margin-top: 40px;
       border: 1px solid var(--border);
-      border-radius: 28px;
+      border-radius: 24px;
       overflow: hidden;
-      background:
-        linear-gradient(135deg, rgba(201,154,74,.14), rgba(255,255,255,.025));
+      background: linear-gradient(135deg, rgba(201,154,74,.12), rgba(255,255,255,.02));
     }
 
     .live-inner {
-      padding: 45px;
+      padding: 40px;
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 30px;
+      gap: 24px;
       align-items: center;
     }
 
@@ -278,129 +244,114 @@
       align-items: center;
       gap: 8px;
       color: #fff;
-      margin-bottom: 18px;
-      font-size: 13px;
+      margin-bottom: 14px;
+      font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .12em;
     }
 
     .live-dot {
-      width: 9px;
-      height: 9px;
-      background: #d83d35;
+      width: 9px; height: 9px;
+      background: var(--red);
       border-radius: 50%;
-      box-shadow: 0 0 16px rgba(216,61,53,.8);
+      box-shadow: 0 0 16px rgba(255,0,0,.8);
     }
 
     .live h3 {
-      font-size: clamp(28px, 5vw, 50px);
-      margin-bottom: 12px;
-    }
-
-    .live p {
-      color: var(--muted);
-      max-width: 650px;
-    }
-
-    /* IDENTITY */
-
-    .identity-grid {
-      margin-top: 55px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .identity-card {
-      padding: 30px;
-      min-height: 220px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      background: var(--black-soft);
-    }
-
-    .identity-icon {
-      font-size: 30px;
-      margin-bottom: 25px;
-    }
-
-    .identity-card h3 {
-      font-size: 22px;
+      font-size: clamp(24px, 4vw, 42px);
       margin-bottom: 10px;
     }
 
-    .identity-card p {
-      color: var(--muted);
-    }
+    .live p { color: var(--muted); max-width: 650px; }
 
-    /* COMMUNITY */
-
-    .community {
-      background:
-        linear-gradient(120deg, #11100d, #090909);
-    }
-
-    .community-box {
-      margin-top: 45px;
-      padding: 55px;
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      text-align: center;
-    }
-
-    .community-box h3 {
-      font-size: clamp(32px, 5vw, 58px);
-      line-height: 1;
-      margin-bottom: 20px;
-    }
-
-    .community-box p {
-      max-width: 650px;
-      margin: 0 auto 30px;
-      color: var(--muted);
-      font-size: 18px;
-    }
-
-    /* SOCIAL */
-
-    .social-grid {
-      margin-top: 45px;
+    /* ============ IDENTITY ============ */
+    .identity-grid {
+      margin-top: 50px;
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
     }
 
-    .social-card {
-      padding: 24px;
+    .identity-card {
+      padding: 28px;
+      min-height: 200px;
       border: 1px solid var(--border);
       border-radius: 20px;
       background: var(--black-soft);
       transition: .2s ease;
     }
 
+    .identity-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,154,74,.4);
+    }
+
+    .identity-icon { font-size: 28px; margin-bottom: 20px; }
+    .identity-card h3 { font-size: 20px; margin-bottom: 8px; }
+    .identity-card p { color: var(--muted); font-size: 15px; }
+
+    /* ============ COMMUNITY ============ */
+    .community {
+      background: linear-gradient(120deg, #1a1508, #0f0f0f);
+    }
+
+    .community-box {
+      margin-top: 40px;
+      padding: 50px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      text-align: center;
+    }
+
+    .community-box h3 {
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1;
+      margin-bottom: 18px;
+    }
+
+    .community-box p {
+      max-width: 650px;
+      margin: 0 auto 26px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    /* ============ SOCIAL ============ */
+    .social-grid {
+      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .social-card {
+      padding: 22px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--black-card);
+      transition: .2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
     .social-card:hover {
       transform: translateY(-4px);
       border-color: rgba(201,154,74,.5);
+      background: #262626;
     }
 
-    .social-card strong {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 5px;
-    }
+    .social-card .icon { font-size: 24px; margin-bottom: 8px; }
+    .social-card strong { display: block; font-size: 17px; }
+    .social-card span { color: var(--muted); font-size: 13px; }
 
-    .social-card span {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    /* FOOTER */
-
+    /* ============ FOOTER ============ */
     footer {
-      padding: 45px 0;
+      padding: 40px 0;
       border-top: 1px solid var(--border);
       color: var(--muted);
+      font-size: 14px;
     }
 
     .footer-inner {
@@ -413,66 +364,32 @@
     .footer-brand {
       color: var(--white);
       font-weight: 800;
-      letter-spacing: .08em;
+      letter-spacing: .05em;
     }
 
-    /* MOBILE */
-
+    /* ============ MOBILE ============ */
     @media (max-width: 800px) {
-      .container {
-        width: min(calc(100% - 28px), var(--max));
-      }
-
-      header {
-        position: absolute;
-      }
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        min-height: 92vh;
-      }
-
-      h1 {
-        font-size: clamp(58px, 19vw, 100px);
-      }
-
-      section {
-        padding: 75px 0;
-      }
+      .container { width: min(calc(100% - 28px), var(--max)); }
+      header { position: absolute; }
+      nav { display: none; }
+      .hero { min-height: 60vh; }
+      h1 { font-size: clamp(44px, 16vw, 80px); }
+      section { padding: 60px 0; }
 
       .live-inner {
         grid-template-columns: 1fr;
-        padding: 30px;
+        padding: 28px;
       }
 
-      .identity-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .social-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .community-box {
-        padding: 35px 22px;
-      }
+      .identity-grid { grid-template-columns: 1fr; }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+      .community-box { padding: 32px 20px; }
     }
 
     @media (max-width: 480px) {
-      .social-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .actions {
-        flex-direction: column;
-      }
-
-      .button {
-        width: 100%;
-      }
+      .social-grid { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .button { width: 100%; }
     }
   </style>
 </head>
@@ -481,7 +398,6 @@
 
   <header>
     <div class="container nav">
-
       <a href="#" class="brand">
         <span class="brand-mark">🐎</span>
         <span>LLANERIAS</span>
@@ -492,31 +408,17 @@
         <a href="#identidad">Identidad</a>
         <a href="#comunidad">Comunidad</a>
         <a href="#redes">Redes</a>
-        <a
-          href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a"
-          target="_blank"
-          rel="noopener"
-          class="nav-button"
-        >
-          WhatsApp
-        </a>
+        <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="nav-button">WhatsApp</a>
       </nav>
-
     </div>
   </header>
-
 
   <main>
 
     <!-- HERO -->
-
     <section class="hero">
-
       <div class="container hero-content">
-
-        <div class="eyebrow">
-          Música · Cultura · Tradición
-        </div>
+        <div class="eyebrow">Música · Cultura · Tradición</div>
 
         <h1>
           <span class="hero-title-line">LLANE</span>
@@ -529,262 +431,162 @@
         </p>
 
         <div class="actions">
-
-          <a
-            href="https://www.youtube.com/"
-            target="_blank"
-            rel="noopener"
-            class="button button-primary"
-          >
-            ▶ Ver YouTube
+          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-youtube">
+            ▶ Suscribirse en YouTube
           </a>
-
-          <a
-            href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a"
-            target="_blank"
-            rel="noopener"
-            class="button button-secondary"
-          >
+          <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-secondary">
             Unirme a la comunidad
           </a>
-
         </div>
-
       </div>
-
     </section>
 
-
     <!-- LIVE -->
-
     <section class="live" id="live">
-
       <div class="container">
-
-        <div class="section-label">
-          LLANERIAS LIVE
-        </div>
-
-        <h2 class="section-title">
-          La música<br>
-          sucede en vivo.
-        </h2>
-
+        <div class="section-label">LLANERIAS LIVE</div>
+        <h2 class="section-title">La música<br>sucede en vivo.</h2>
         <p class="section-description">
           Música llanera, historias, conversaciones y una comunidad
           conectada desde Venezuela, Colombia, España y el mundo.
         </p>
 
         <div class="live-card">
-
           <div class="live-inner">
-
             <div>
-
               <div class="live-status">
                 <span class="live-dot"></span>
                 Próximamente
               </div>
-
-              <h3>
-                LLANERIAS LIVE 365
-              </h3>
-
-              <p>
-                Una nueva forma de vivir la música llanera:
-                conversación, historias, canciones y comunidad.
-              </p>
-
+              <h3>LLANERIAS LIVE 365</h3>
+              <p>Una nueva forma de vivir la música llanera: conversación, historias, canciones y comunidad.</p>
             </div>
 
-            <a
-              href="https://www.youtube.com/"
-              target="_blank"
-              rel="noopener"
-              class="button button-primary"
-            >
+            <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="button button-primary">
               Ver canal
             </a>
-
           </div>
-
         </div>
-
       </div>
-
     </section>
 
-
     <!-- IDENTIDAD -->
-
     <section id="identidad">
-
       <div class="container">
-
-        <div class="section-label">
-          Nuestra esencia
-        </div>
-
-        <h2 class="section-title">
-          Una cultura.<br>
-          Una comunidad.
-        </h2>
-
+        <div class="section-label">Nuestra esencia</div>
+        <h2 class="section-title">Una cultura.<br>Una comunidad.</h2>
         <p class="section-description">
           LLANERIAS nace para conectar a quienes aman nuestra música
           y nuestras raíces, estén donde estén.
         </p>
 
         <div class="identity-grid">
-
           <article class="identity-card">
             <div class="identity-icon">🇻🇪</div>
             <h3>Venezuela</h3>
-            <p>
-              Nuestra tierra, nuestras historias y nuestras raíces.
-            </p>
+            <p>Nuestra tierra, nuestras historias y nuestras raíces.</p>
           </article>
-
           <article class="identity-card">
             <div class="identity-icon">🇨🇴</div>
             <h3>Colombia</h3>
-            <p>
-              El llano que compartimos y una tradición que nos une.
-            </p>
+            <p>El llano que compartimos y una tradición que nos une.</p>
           </article>
-
           <article class="identity-card">
             <div class="identity-icon">🌎</div>
             <h3>El mundo</h3>
-            <p>
-              Llevar la música llanera mucho más allá de nuestras fronteras.
-            </p>
+            <p>Llevar la música llanera mucho más allá de nuestras fronteras.</p>
           </article>
-
         </div>
-
       </div>
-
     </section>
 
-
     <!-- COMMUNITY -->
-
     <section class="community" id="comunidad">
-
       <div class="container">
-
         <div class="community-box">
-
-          <div class="section-label">
-            La familia LLANERIAS
-          </div>
-
-          <h3>
-            El llano no tiene fronteras.
-          </h3>
-
+          <div class="section-label">La familia LLANERIAS</div>
+          <h3>El llano no tiene fronteras.</h3>
           <p>
             Únete a una comunidad formada por venezolanos, colombianos
             y amantes de la música llanera alrededor del mundo.
           </p>
-
-          <a
-            href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a"
-            target="_blank"
-            rel="noopener"
-            class="button button-primary"
-          >
+          <a href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a" target="_blank" rel="noopener" class="button button-primary">
             Unirme al canal de WhatsApp
           </a>
-
         </div>
-
       </div>
-
     </section>
 
-
     <!-- REDES -->
-
     <section id="redes">
-
       <div class="container">
-
-        <div class="section-label">
-          LLANERIAS está contigo
-        </div>
-
-        <h2 class="section-title">
-          Síguenos.
-        </h2>
-
+        <div class="section-label">LLANERIAS está contigo</div>
+        <h2 class="section-title">Síguenos.</h2>
         <p class="section-description">
-          Las redes son las puertas de entrada.
-          LLANERIAS.COM será nuestra casa.
+          Las redes son las puertas de entrada. LLANERIAS.COM será nuestra casa.
         </p>
 
         <div class="social-grid">
 
-          <a
-            href="https://www.youtube.com/"
-            target="_blank"
-            rel="noopener"
-            class="social-card"
-          >
+          <a href="https://www.youtube.com/@Llanerias" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">▶️</span>
             <strong>YouTube</strong>
             <span>Videos · Música · LIVE</span>
           </a>
 
-          <a
-            href="#"
-            class="social-card"
-          >
+          <a href="https://www.tiktok.com/@jeanluisoropeza?_r=1&_t=ZS-9A4UDjfMuJw" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">🎵</span>
             <strong>TikTok</strong>
-            <span>Viralidad · LIVE · Comunidad</span>
+            <span>@jeanluisoropeza</span>
           </a>
 
-          <a
-            href="#"
-            class="social-card"
-          >
+          <a href="https://www.instagram.com/jeanluisoropeza?stkn=MWY2MmRhMDdmOXgwaQ==" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">📸</span>
             <strong>Instagram</strong>
-            <span>Historias · Backstage</span>
+            <span>@jeanluisoropeza</span>
           </a>
 
-          <a
-            href="https://whatsapp.com/channel/0029Vb8H8vQ3mFY8kr8R3A2a"
-            target="_blank"
-            rel="noopener"
-            class="social-card"
-          >
-            <strong>WhatsApp</strong>
-            <span>La familia LLANERIAS</span>
+          <a href="https://x.com/JeanLuisOropeza" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">🐦</span>
+            <strong>X</strong>
+            <span>@JeanLuisOropeza</span>
+          </a>
+
+          <a href="https://www.facebook.com/share/1Ekuao6SBn" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">👤</span>
+            <strong>Facebook</strong>
+            <span>Jean Luis Oropeza</span>
+          </a>
+
+          <a href="https://www.facebook.com/share/1LrNZ4FD66/" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">⭐</span>
+            <strong>Fan Page</strong>
+            <span>Llanerias</span>
+          </a>
+
+          <a href="https://www.snapchat.com/add/jeanluisoropeza?share_id=r3MTzC8GO0k&locale=es-ES" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">👻</span>
+            <strong>Snapchat</strong>
+            <span>@jeanluisoropeza</span>
+          </a>
+
+          <a href="https://www.threads.com/@jeanluisoropeza?invite=0" target="_blank" rel="noopener" class="social-card">
+            <span class="icon">🧵</span>
+            <strong>Threads</strong>
+            <span>@jeanluisoropeza</span>
           </a>
 
         </div>
-
       </div>
-
     </section>
 
   </main>
 
-
   <footer>
-
     <div class="container footer-inner">
-
-      <div class="footer-brand">
-        🐎 LLANERIAS
-      </div>
-
-      <div>
-        © 2026 LLANERIAS · Jean Luis Oropeza
-      </div>
-
+      <div class="footer-brand">🐎 LLANERIAS</div>
+      <div>© 2026 LLANERIAS · Jean Luis Oropeza</div>
     </div>
-
   </footer>
 
 </body>
