@@ -433,7 +433,7 @@
     .np {
       --gold: #deb23c; --gold-l: #f6d77a; --gold-d: #9c7421;
       position: relative; isolation: isolate; overflow: hidden;
-      max-width: 760px; margin: 0 auto; padding: 12px 16px 14px 12px;
+      max-width: 760px; margin: 0 auto; padding: 14px 18px 16px 14px;
       display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 16px;
       border-radius: 18px; border: 1px solid rgba(222,178,60,.25);
       background: linear-gradient(100deg, rgba(40,32,18,.92), rgba(22,20,18,.92) 55%, rgba(18,18,18,.92));
@@ -445,16 +445,30 @@
     }
     .np.is-playing .np-ambient { opacity: .16; }
 
-    /* Disco */
-    .np-disc {
-      position: relative; width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
-      background: repeating-radial-gradient(circle, #0b0b0b 0 1.4px, #1a1a1a 1.4px 2.8px);
-      box-shadow: 0 0 0 2px rgba(222,178,60,.55), 0 6px 16px rgba(0,0,0,.5), 0 0 22px rgba(222,178,60,var(--glow, .1));
-      animation: vinyl-spin 3.6s linear infinite; animation-play-state: paused;
+    /* Portada del cantante: grande, fija, late con la música */
+    .np-cover {
+      position: relative; width: 92px; height: 92px; flex-shrink: 0;
+      --beat: 0;
+      transform: scale(calc(1 + var(--beat) * .07)); transition: transform .08s linear;
     }
-    .np-disc img { position: absolute; inset: 15px; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
-    .np-disc::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #0b0b0b; }
-    .np.is-playing .np-disc { animation-play-state: running; }
+    .np-cover img {
+      position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 16px;
+      border: 2px solid rgba(222,178,60,.7);
+      box-shadow: 0 8px 22px rgba(0,0,0,.55), 0 0 calc(10px + var(--beat) * 40px) rgba(222,178,60,calc(.15 + var(--beat) * .55));
+    }
+    .np-cover::after { /* reflejo de luz que cruza la portada */
+      content: ''; position: absolute; inset: 0; z-index: 2; border-radius: 16px; pointer-events: none;
+      background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.28) 50%, transparent 65%);
+      background-size: 250% 100%; background-position: 150% 0; opacity: 0;
+    }
+    .np.is-playing .np-cover::after { opacity: 1; animation: cover-shine 4.5s ease-in-out infinite 1s; }
+    @keyframes cover-shine { 0% { background-position: 150% 0; } 35%, 100% { background-position: -60% 0; } }
+    .np-ring { /* ondas de sonido que salen de la portada */
+      position: absolute; inset: 0; border-radius: 18px; border: 2px solid rgba(222,178,60,.6); opacity: 0; pointer-events: none;
+    }
+    .np.is-playing .np-ring { animation: ring-out 2.4s ease-out infinite; }
+    .np.is-playing .np-ring:nth-child(2) { animation-delay: 1.2s; }
+    @keyframes ring-out { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(1.35); opacity: 0; } }
     @keyframes vinyl-spin { to { transform: rotate(360deg); } }
 
     /* Texto */
@@ -534,8 +548,9 @@
       transform: translateY(140%); opacity: 0; transition: transform .35s ease, opacity .35s ease; max-width: calc(100% - 110px);
     }
     .mini-player.show { transform: none; opacity: 1; }
-    .mini-player img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #deb23c; animation: vinyl-spin 6s linear infinite; animation-play-state: paused; }
-    .mini-player.is-playing img { animation-play-state: running; }
+    .mini-player img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border-radius: 10px; border: 2px solid #deb23c; }
+    .mini-player.is-playing img { animation: mini-pulse 1.4s ease-in-out infinite; }
+    @keyframes mini-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(222,178,60,.6); } 50% { box-shadow: 0 0 0 6px rgba(222,178,60,0); } }
     .mini-text { min-width: 0; line-height: 1.2; padding-right: 4px; }
     .mini-text strong { display: block; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .mini-text span { font-size: 11.5px; color: var(--text-secondary); white-space: nowrap; }
@@ -544,10 +559,10 @@
     .mini-player button svg { width: 16px; height: 16px; fill: currentColor; }
 
     @media (max-width: 640px) {
-      .np { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; padding: 10px 12px 12px 10px; border-radius: 16px; }
+      .np { grid-template-columns: auto minmax(0, 1fr) auto; gap: 14px; padding: 10px 12px 12px 10px; border-radius: 16px; }
       .np-viz, .np-time { display: none; }
-      .np-disc { width: 56px; height: 56px; }
-      .np-disc img { inset: 13px; width: 30px; height: 30px; }
+      .np-cover { width: 76px; height: 76px; }
+      .np-cover img, .np-cover::after { border-radius: 14px; }
       .np-title strong { font-size: 16px; }
       .np-title span { font-size: 13px; }
       .np-btn { width: 36px; height: 36px; }
@@ -556,7 +571,8 @@
       .nav-music { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
-      .np-disc, .mini-player img, .np-eq i, .np-unmute, .np-ticker-track { animation: none !important; }
+      .np-ring, .np-cover::after, .mini-player img, .np-eq i, .np-unmute, .np-ticker-track { animation: none !important; }
+      .np-cover { transform: none; }
       .np-ticker { height: auto; -webkit-mask-image: none; mask-image: none; }
       .np-ticker-track { white-space: normal; }
       .np-ticker-track span + span { display: none; }
@@ -693,7 +709,7 @@
         <div class="np" id="vicioPlayer">
           <div class="np-ambient" id="vicioAmbient" aria-hidden="true"></div>
 
-          <div class="np-disc" id="vicioVinyl"><img class="vicio-cover" src="images.jpg" alt="Teo Galíndez — Vicios"></div>
+          <div class="np-cover" id="vicioVinyl"><span class="np-ring"></span><span class="np-ring"></span><img class="vicio-cover" src="images.jpg" alt="Teo Galíndez — Vicios"></div>
 
           <div class="np-meta">
             <div class="np-top">
@@ -1229,7 +1245,7 @@
             ctx.fill();
           }
         }
-        $('vicioVinyl').style.setProperty('--glow', (0.1 + energy * 0.6).toFixed(3));
+        $('vicioVinyl').style.setProperty('--beat', playing ? Math.min(1, Math.max(0, (energy - 0.15) * 1.6)).toFixed(3) : '0');
         if (!reduce) requestAnimationFrame(draw);
       }
       requestAnimationFrame(draw);
@@ -1246,18 +1262,31 @@
         refreshUI();
       }
 
+      // Activación del sonido con el primer gesto real del visitante.
+      // En móvil el permiso llega al levantar el dedo (touchend/click), no al tocar,
+      // así que escuchamos varios eventos y no paramos hasta que la música suene.
       let gestureArmed = false;
+      const GESTURES = ['click', 'touchend', 'pointerup', 'mousedown', 'keydown'];
       function armFirstGesture() {
         if (gestureArmed) return; gestureArmed = true;
-        const evs = ['pointerdown', 'keydown', 'touchstart'];
-        const once = ev => {
-          evs.forEach(e => document.removeEventListener(e, once, true));
-          gestureArmed = false;
-          if (ev.target.closest && ev.target.closest('#vicioToggle, #vicioMiniToggle')) return; // ese botón decide
-          unlockSound();
+        const handler = ev => {
+          if (ev.target.closest && ev.target.closest('#vicioToggle, #vicioMiniToggle')) return disarm();
+          if (userPaused) return disarm();
+          audio.muted = false;
+          if (audio.volume === 0) audio.volume = VOLUME;
+          const done = () => { setupAnalyser(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); refreshUI(); };
+          if (audio.paused) {
+            audio.play().then(() => { disarm(); done(); }).catch(() => { audio.muted = true; refreshUI(); });
+          } else { disarm(); done(); }
         };
-        evs.forEach(e => document.addEventListener(e, once, { capture: true, passive: true }));
+        function disarm() { GESTURES.forEach(e => document.removeEventListener(e, handler, true)); gestureArmed = false; }
+        GESTURES.forEach(e => document.addEventListener(e, handler, { capture: true, passive: true }));
       }
+
+      // Si vuelve a la pestaña y estaba bloqueado, reintenta
+      document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'visible' && audio.paused && !userPaused) autoStart();
+      });
 
       async function autoStart() {
         if (userPaused) { refreshUI(); return; }
@@ -1360,3 +1389,4 @@
 
 </body>
 </html>
+
