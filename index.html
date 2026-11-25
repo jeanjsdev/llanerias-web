@@ -427,6 +427,141 @@
     }
     .floating-wa:hover::after { opacity: 1; transform: translateY(-50%) translateX(0); }
 
+
+    /* ===== REPRODUCTOR COMPACTO: VICIOS · TEO GALÍNDEZ ===== */
+    .player-section { padding: 28px 0 8px; }
+    .np {
+      --gold: #deb23c; --gold-l: #f6d77a; --gold-d: #9c7421;
+      position: relative; isolation: isolate; overflow: hidden;
+      max-width: 760px; margin: 0 auto; padding: 12px 16px 14px 12px;
+      display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center; gap: 16px;
+      border-radius: 18px; border: 1px solid rgba(222,178,60,.25);
+      background: linear-gradient(100deg, rgba(40,32,18,.92), rgba(22,20,18,.92) 55%, rgba(18,18,18,.92));
+      box-shadow: 0 14px 40px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.04);
+    }
+    .np-ambient {
+      position: absolute; inset: -60% -10% -60% -10%; z-index: -1; background-size: cover; background-position: center;
+      filter: blur(40px) saturate(1.5); opacity: 0; transition: opacity 1s ease;
+    }
+    .np.is-playing .np-ambient { opacity: .16; }
+
+    /* Disco */
+    .np-disc {
+      position: relative; width: 64px; height: 64px; border-radius: 50%; flex-shrink: 0;
+      background: repeating-radial-gradient(circle, #0b0b0b 0 1.4px, #1a1a1a 1.4px 2.8px);
+      box-shadow: 0 0 0 2px rgba(222,178,60,.55), 0 6px 16px rgba(0,0,0,.5), 0 0 22px rgba(222,178,60,var(--glow, .1));
+      animation: vinyl-spin 3.6s linear infinite; animation-play-state: paused;
+    }
+    .np-disc img { position: absolute; inset: 15px; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+    .np-disc::after { content: ''; position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: #0b0b0b; }
+    .np.is-playing .np-disc { animation-play-state: running; }
+    @keyframes vinyl-spin { to { transform: rotate(360deg); } }
+
+    /* Texto */
+    .np-meta { min-width: 0; }
+    .np-top { display: flex; align-items: center; gap: 8px; height: 18px; }
+    .np-label { display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold-l); white-space: nowrap; }
+    .np-eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 10px; }
+    .np-eq i { width: 2.5px; height: 30%; background: var(--gold); border-radius: 1px; }
+    .np.is-playing .np-eq i { animation: eq .9s ease-in-out infinite; }
+    .np-eq i:nth-child(2) { animation-delay: -.3s !important; }
+    .np-eq i:nth-child(3) { animation-delay: -.6s !important; }
+    @keyframes eq { 0%,100% { height: 25%; } 50% { height: 100%; } }
+    .np-unmute {
+      display: none; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; border: none; cursor: pointer;
+      background: var(--gold); color: #111; font: 700 11px/1.4 inherit; font-family: inherit; white-space: nowrap;
+      animation: pulse-gold 1.6s ease-in-out infinite;
+    }
+    .np-unmute svg { width: 13px; height: 13px; fill: currentColor; }
+    .np.muted-autoplay .np-unmute, .np.needs-tap .np-unmute { display: inline-flex; }
+    .np.muted-autoplay .np-label, .np.needs-tap .np-label { display: none; }
+    @keyframes pulse-gold { 0%,100% { box-shadow: 0 0 0 0 rgba(222,178,60,.55); } 50% { box-shadow: 0 0 0 7px rgba(222,178,60,0); } }
+    .np-title { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; white-space: nowrap; overflow: hidden; }
+    .np-title strong { font-size: 18px; font-weight: 700; letter-spacing: -.01em; }
+    .np-title span { font-size: 14px; color: var(--text-secondary); overflow: hidden; text-overflow: ellipsis; }
+
+    /* Créditos en cinta corrediza */
+    .np-ticker {
+      position: relative; overflow: hidden; margin-top: 4px; height: 18px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+              mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .np-ticker-track { display: inline-flex; white-space: nowrap; animation: ticker 26s linear infinite; animation-play-state: paused; }
+    .np.is-playing .np-ticker-track { animation-play-state: running; }
+    .np-ticker-track span { font-size: 12px; color: var(--text-secondary); padding-right: 36px; }
+    .np-ticker-track b { color: var(--gold); font-weight: 600; }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+
+    /* Visualizador */
+    .np-viz { width: 120px; height: 38px; display: block; }
+
+    /* Controles */
+    .np-controls { display: flex; align-items: center; gap: 6px; }
+    .np-time { font-size: 12px; color: var(--text-tertiary); font-variant-numeric: tabular-nums; min-width: 74px; text-align: right; margin-right: 2px; }
+    .np-btn { width: 40px; height: 40px; border-radius: 50%; border: none; background: none; color: var(--text-secondary); cursor: pointer; display: grid; place-items: center; transition: color .2s, background .2s; }
+    .np-btn:hover { color: #fff; background: rgba(255,255,255,.07); }
+    .np-btn svg { width: 20px; height: 20px; fill: currentColor; }
+    .np-play {
+      width: 48px; height: 48px; border-radius: 50%; border: none; cursor: pointer; display: grid; place-items: center; color: #111;
+      background: linear-gradient(180deg, var(--gold-l), var(--gold) 60%, var(--gold-d));
+      box-shadow: 0 6px 18px rgba(222,178,60,.4), inset 0 1px 0 rgba(255,255,255,.5); transition: transform .15s ease;
+    }
+    .np-play:hover { transform: scale(1.07); }
+    .np-play:active { transform: scale(.95); }
+    .np-play svg { width: 22px; height: 22px; fill: currentColor; }
+    .np-btn:focus-visible, .np-play:focus-visible, .np-unmute:focus-visible, .np-progress:focus-visible { outline: 2px solid var(--gold-l); outline-offset: 2px; }
+    .i-pause { display: none; }
+    .is-playing .i-play { display: none; }
+    .is-playing .i-pause { display: block; }
+    .i-muted { display: none; }
+    .is-muted .i-vol { display: none; }
+    .is-muted .i-muted { display: block; }
+
+    /* Progreso: línea fina en el borde inferior */
+    .np-progress { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.08); cursor: pointer; touch-action: none; }
+    .np-progress::before { content: ''; position: absolute; inset: -9px 0 0; } /* zona de toque */
+    .np-progress-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, var(--gold-d), var(--gold-l)); box-shadow: 0 0 10px rgba(222,178,60,.7); }
+    .np:hover .np-progress { height: 5px; }
+    .np-status { grid-column: 1 / -1; font-size: 12px; color: var(--gold-l); margin-top: -6px; }
+    .np-status:empty { display: none; }
+
+    /* Mini reproductor flotante */
+    .mini-player {
+      position: fixed; left: 22px; bottom: 22px; z-index: 200;
+      display: flex; align-items: center; gap: 10px; padding: 6px 8px 6px 6px;
+      background: rgba(24,22,18,.94); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(222,178,60,.45); border-radius: 999px; box-shadow: 0 10px 28px rgba(0,0,0,.45);
+      transform: translateY(140%); opacity: 0; transition: transform .35s ease, opacity .35s ease; max-width: calc(100% - 110px);
+    }
+    .mini-player.show { transform: none; opacity: 1; }
+    .mini-player img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #deb23c; animation: vinyl-spin 6s linear infinite; animation-play-state: paused; }
+    .mini-player.is-playing img { animation-play-state: running; }
+    .mini-text { min-width: 0; line-height: 1.2; padding-right: 4px; }
+    .mini-text strong { display: block; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mini-text span { font-size: 11.5px; color: var(--text-secondary); white-space: nowrap; }
+    .mini-player button { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; border: none; background: #deb23c; color: #111; cursor: pointer; display: grid; place-items: center; }
+    .mini-player button.mini-mute { background: rgba(255,255,255,.1); color: #fff; }
+    .mini-player button svg { width: 16px; height: 16px; fill: currentColor; }
+
+    @media (max-width: 640px) {
+      .np { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; padding: 10px 12px 12px 10px; border-radius: 16px; }
+      .np-viz, .np-time { display: none; }
+      .np-disc { width: 56px; height: 56px; }
+      .np-disc img { inset: 13px; width: 30px; height: 30px; }
+      .np-title strong { font-size: 16px; }
+      .np-title span { font-size: 13px; }
+      .np-btn { width: 36px; height: 36px; }
+      .np-play { width: 44px; height: 44px; }
+      .mini-player { left: 16px; bottom: 16px; }
+      .nav-music { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .np-disc, .mini-player img, .np-eq i, .np-unmute, .np-ticker-track { animation: none !important; }
+      .np-ticker { height: auto; -webkit-mask-image: none; mask-image: none; }
+      .np-ticker-track { white-space: normal; }
+      .np-ticker-track span + span { display: none; }
+    }
+
     /* SCROLL REVEAL */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -504,6 +639,7 @@
         <span>LLANERIAS</span>
       </a>
       <nav>
+        <a href="#musica" class="nav-music">Música</a>
         <a href="#live">Live</a>
         <a href="#identidad">Identidad</a>
         <a href="#comunidad">Comunidad</a>
@@ -550,6 +686,73 @@
         </div>
       </div>
     </section>
+
+    <!-- REPRODUCTOR COMPACTO: VICIOS · TEO GALÍNDEZ -->
+    <section class="player-section" id="musica">
+      <div class="container">
+        <div class="np" id="vicioPlayer">
+          <div class="np-ambient" id="vicioAmbient" aria-hidden="true"></div>
+
+          <div class="np-disc" id="vicioVinyl"><img class="vicio-cover" src="images.jpg" alt="Teo Galíndez — Vicios"></div>
+
+          <div class="np-meta">
+            <div class="np-top">
+              <span class="np-label"><span class="np-eq" aria-hidden="true"><i></i><i></i><i></i></span>Sonando en LLANERIAS</span>
+              <button class="np-unmute" id="vicioUnmute" type="button">
+                <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+                <span id="vicioUnmuteText">Activar sonido</span>
+              </button>
+            </div>
+            <div class="np-title"><strong>Vicios</strong><span>Teo Galíndez</span></div>
+            <div class="np-ticker" aria-label="Créditos: Tema Vicios. Artista Teo Galíndez. Autor Cheo Orozco. Edición audiovisual Luis Carrero en nombre de IC Records.">
+              <div class="np-ticker-track" aria-hidden="true">
+                <span><b>Tema:</b> Vicios &nbsp;·&nbsp; <b>Artista:</b> Teo Galíndez &nbsp;·&nbsp; <b>Autor:</b> Cheo Orozco &nbsp;·&nbsp; <b>Edición audiovisual:</b> Luis Carrero en nombre de IC Records</span>
+                <span><b>Tema:</b> Vicios &nbsp;·&nbsp; <b>Artista:</b> Teo Galíndez &nbsp;·&nbsp; <b>Autor:</b> Cheo Orozco &nbsp;·&nbsp; <b>Edición audiovisual:</b> Luis Carrero en nombre de IC Records</span>
+              </div>
+            </div>
+          </div>
+
+          <canvas class="np-viz" id="vicioViz" aria-hidden="true"></canvas>
+
+          <div class="np-controls">
+            <span class="np-time"><span id="vicioCur">0:00</span> / <span id="vicioDur">0:00</span></span>
+            <button class="np-btn" id="vicioMute" type="button" aria-label="Silenciar">
+              <svg class="i-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+              <svg class="i-muted" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM19 12c0 .9-.2 1.8-.5 2.6l1.5 1.5A8.8 8.8 0 0 0 21 12a9 9 0 0 0-7-8.8v2.1A7 7 0 0 1 19 12zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l4.3 4.3c-.7.5-1.4.9-2.3 1.2v2.1a9 9 0 0 0 3.7-1.8L19.7 21 21 19.7l-9-9L4.3 3zM12 4 9.9 6.1 12 8.2V4z"/></svg>
+            </button>
+            <button class="np-play" id="vicioToggle" type="button" aria-label="Reproducir">
+              <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              <svg class="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+            </button>
+          </div>
+
+          <div class="np-status" id="vicioStatus" aria-live="polite"></div>
+
+          <div class="np-progress" id="vicioProgress" role="slider" aria-label="Progreso de la canción" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" tabindex="0">
+            <div class="np-progress-fill" id="vicioFill"></div>
+          </div>
+
+          <audio id="vicioAudio" preload="auto" loop playsinline>
+            <source src="Vicios%2B-%2BTeo%2BGal%C3%ADndez%2B%23joropo%2B%23llanera%2B%23criollo%20%5B4KKctsuJF9Y%5D.mp3" type="audio/mpeg">
+            <source src="https://raw.githubusercontent.com/jeanjsdev/llanerias-web/main/Vicios%2B-%2BTeo%2BGal%C3%ADndez%2B%23joropo%2B%23llanera%2B%23criollo%20%5B4KKctsuJF9Y%5D.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini reproductor flotante -->
+    <div class="mini-player" id="vicioMini">
+      <img class="vicio-cover" src="images.jpg" alt="">
+      <div class="mini-text"><strong>Vicios</strong><span>Teo Galíndez</span></div>
+      <button class="mini-mute" id="vicioMiniMute" type="button" aria-label="Activar o quitar sonido">
+        <svg class="i-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+        <svg class="i-muted" viewBox="0 0 24 24"><path d="M16.5 12A4.5 4.5 0 0 0 14 8v2.2l2.4 2.4c.1-.2.1-.4.1-.6zM4.3 3 3 4.3 7.7 9H3v6h4l5 5v-6.7l7.7 7.7 1.3-1.3L4.3 3zM12 4 9.9 6.1 12 8.2V4z"/></svg>
+      </button>
+      <button id="vicioMiniToggle" type="button" aria-label="Reproducir o pausar">
+        <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        <svg class="i-pause" viewBox="0 0 24 24"><path d="M6 5h4v14H6zm8 0h4v14h-4z"/></svg>
+      </button>
+    </div>
 
     <!-- LIVE -->
     <section class="live" id="live">
@@ -928,6 +1131,230 @@
 
       updateArrows();
       updateDots();
+    })();
+
+    /* ===== 4. Reproductor "Vicios" — Teo Galíndez (autoinicio) ===== */
+    (function() {
+      const $ = id => document.getElementById(id);
+      const audio = $('vicioAudio'), card = $('vicioPlayer');
+      if (!audio || !card) return;
+      const mini = $('vicioMini'), fill = $('vicioFill'), bar = $('vicioProgress');
+      const cur = $('vicioCur'), dur = $('vicioDur'), vol = $('vicioVol'), status = $('vicioStatus');
+      const canvas = $('vicioViz'), ctx = canvas.getContext('2d');
+      const RAW = 'https://raw.githubusercontent.com/jeanjsdev/llanerias-web/main/';
+      const VOLUME = 0.7;
+
+      // Portada: desde el sitio y, si falla, desde GitHub
+      document.querySelectorAll('.vicio-cover').forEach(img => {
+        img.addEventListener('error', function onErr() { img.removeEventListener('error', onErr); img.src = RAW + 'images.jpg'; });
+      });
+      const setAmbient = () => { $('vicioAmbient').style.backgroundImage = 'url("' + document.querySelector('.vicio-cover').currentSrc + '")'; };
+      const coverImg = document.querySelector('.vicio-cover');
+      coverImg.complete ? setAmbient() : coverImg.addEventListener('load', setAmbient);
+      coverImg.addEventListener('load', setAmbient);
+
+      let userPaused = false;
+      try { userPaused = sessionStorage.getItem('vicioPaused') === '1'; } catch (e) {}
+      audio.volume = VOLUME;
+
+      const fmt = t => isFinite(t) ? Math.floor(t / 60) + ':' + String(Math.floor(t % 60)).padStart(2, '0') : '0:00';
+      const setStatus = t => { status.textContent = t || ''; };
+
+      function refreshUI() {
+        const playing = !audio.paused;
+        const muted = audio.muted || audio.volume === 0;
+        card.classList.toggle('is-playing', playing);
+        mini.classList.toggle('is-playing', playing);
+        card.classList.toggle('muted-autoplay', playing && audio.muted);
+        $('vicioMute').classList.toggle('is-muted', muted);
+        $('vicioMiniMute').classList.toggle('is-muted', muted);
+        $('vicioToggle').setAttribute('aria-label', playing ? 'Pausar' : 'Reproducir');
+        if (playing) card.classList.remove('needs-tap');
+      }
+
+      /* --- Visualizador: real con Web Audio (mismo dominio) o simulado --- */
+      let analyser = null, freq = null, audioCtx = null;
+      function setupAnalyser() {
+        if (analyser || !window.AudioContext && !window.webkitAudioContext) return;
+        const sameOrigin = /^https?:/.test(location.protocol) && audio.currentSrc.indexOf(location.origin) === 0;
+        if (!sameOrigin) return;                       // evita silenciar audio de otro dominio
+        try {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const src = audioCtx.createMediaElementSource(audio);
+          analyser = audioCtx.createAnalyser();
+          analyser.fftSize = 256; analyser.smoothingTimeConstant = 0.8;
+          src.connect(analyser); analyser.connect(audioCtx.destination);
+          freq = new Uint8Array(analyser.frequencyBinCount);
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+        } catch (e) { analyser = null; }
+      }
+
+      const BARS = 20;
+      const levels = new Float32Array(BARS);
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function sizeCanvas() {
+        const r = canvas.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+        canvas.width = Math.max(1, Math.round(r.width * d)); canvas.height = Math.max(1, Math.round(r.height * d));
+      }
+      sizeCanvas(); window.addEventListener('resize', sizeCanvas);
+
+      function draw(ts) {
+        const w = canvas.width, h = canvas.height, d = window.devicePixelRatio || 1;
+        const playing = !audio.paused;
+        if (analyser && freq) analyser.getByteFrequencyData(freq);
+        let energy = 0;
+        for (let i = 0; i < BARS; i++) {
+          let target;
+          if (analyser && freq) target = freq[Math.floor(2 + i * (freq.length * 0.6) / BARS)] / 255;
+          else {
+            const t = ts / 1000;
+            target = playing ? 0.3 + 0.3 * Math.abs(Math.sin(t * 3.3 + i * 0.7)) * (0.6 + 0.4 * Math.sin(t * 1.3 + i * 0.3)) + 0.25 * Math.abs(Math.sin(t * 7 + i * 1.9)) : 0.06;
+          }
+          levels[i] += (Math.max(0.06, target) - levels[i]) * (playing ? 0.3 : 0.08);
+          energy += levels[i];
+        }
+        energy /= BARS;
+        ctx.clearRect(0, 0, w, h);
+        if (w > 2) {
+          const g = ctx.createLinearGradient(0, h, 0, 0);
+          g.addColorStop(0, '#9c7421'); g.addColorStop(1, '#f6d77a');
+          ctx.fillStyle = g;
+          const gap = 2.5 * d, bw = (w - gap * (BARS - 1)) / BARS;
+          for (let i = 0; i < BARS; i++) {
+            const bh = Math.max(2 * d, levels[i] * h);
+            const x = i * (bw + gap), y = (h - bh) / 2;          // barras centradas, estilo onda
+            const r = Math.min(bw / 2, bh / 2);
+            ctx.beginPath();
+            if (ctx.roundRect) ctx.roundRect(x, y, bw, bh, r); else ctx.rect(x, y, bw, bh);
+            ctx.fill();
+          }
+        }
+        $('vicioVinyl').style.setProperty('--glow', (0.1 + energy * 0.6).toFixed(3));
+        if (!reduce) requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+
+      /* --- Reproducción y autoinicio --- */
+      const tryPlay = () => audio.play().then(() => true).catch(() => false);
+
+      function unlockSound() {                  // se llama en un gesto del visitante
+        audio.muted = false;
+        if (audio.volume === 0) { audio.volume = VOLUME; if (vol) vol.value = VOLUME; }
+        setupAnalyser();
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+        if (audio.paused && !userPaused) tryPlay();
+        refreshUI();
+      }
+
+      let gestureArmed = false;
+      function armFirstGesture() {
+        if (gestureArmed) return; gestureArmed = true;
+        const evs = ['pointerdown', 'keydown', 'touchstart'];
+        const once = ev => {
+          evs.forEach(e => document.removeEventListener(e, once, true));
+          gestureArmed = false;
+          if (ev.target.closest && ev.target.closest('#vicioToggle, #vicioMiniToggle')) return; // ese botón decide
+          unlockSound();
+        };
+        evs.forEach(e => document.addEventListener(e, once, { capture: true, passive: true }));
+      }
+
+      async function autoStart() {
+        if (userPaused) { refreshUI(); return; }
+        audio.muted = false;
+        if (await tryPlay()) { setupAnalyser(); refreshUI(); return; }      // 1) con sonido
+        audio.muted = true;
+        if (await tryPlay()) { refreshUI(); armFirstGesture(); return; }    // 2) sin sonido; se activa al primer toque
+        card.classList.add('needs-tap');                                    // 3) el navegador exige un toque
+        $('vicioUnmuteText').textContent = 'Toca para escuchar';
+        armFirstGesture();
+      }
+
+      function playPause() {
+        if (audio.paused) {
+          userPaused = false;
+          try { sessionStorage.removeItem('vicioPaused'); } catch (e) {}
+          audio.muted = false; setupAnalyser();
+          if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+          tryPlay().then(refreshUI);
+        } else if (audio.muted) {
+          unlockSound();                          // si sonaba en silencio, el botón activa el sonido
+        } else {
+          userPaused = true;
+          try { sessionStorage.setItem('vicioPaused', '1'); } catch (e) {}
+          audio.pause();
+        }
+      }
+
+      $('vicioToggle').addEventListener('click', playPause);
+      $('vicioMiniToggle').addEventListener('click', playPause);
+      $('vicioUnmute').addEventListener('click', unlockSound);
+      const toggleMute = () => {
+        if (audio.muted || audio.volume === 0) unlockSound();
+        else { audio.muted = true; refreshUI(); }
+      };
+      $('vicioMute').addEventListener('click', toggleMute);
+      $('vicioMiniMute').addEventListener('click', toggleMute);
+      if (vol) vol.addEventListener('input', () => { audio.volume = +vol.value; audio.muted = +vol.value === 0; refreshUI(); });
+      if ($('vicioBack')) $('vicioBack').addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 10); });
+      if ($('vicioFwd')) $('vicioFwd').addEventListener('click', () => { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10); });
+
+      ['play', 'pause', 'volumechange'].forEach(e => audio.addEventListener(e, refreshUI));
+      audio.addEventListener('loadedmetadata', () => { dur.textContent = fmt(audio.duration); setStatus(''); });
+      audio.addEventListener('waiting', () => setStatus('Cargando…'));
+      audio.addEventListener('playing', () => setStatus(''));
+      audio.addEventListener('timeupdate', () => {
+        const p = audio.duration ? audio.currentTime / audio.duration : 0;
+        fill.style.width = (p * 100) + '%';
+        cur.textContent = fmt(audio.currentTime);
+        bar.setAttribute('aria-valuenow', Math.round(p * 100));
+      });
+      const lastSource = audio.querySelector('source:last-of-type');
+      lastSource.addEventListener('error', () => setStatus('No se pudo cargar la canción. Revisa que el mp3 esté en el repositorio.'));
+
+      // Barra de progreso: clic o arrastre
+      function seekTo(clientX) {
+        const r = bar.getBoundingClientRect();
+        const p = Math.min(1, Math.max(0, (clientX - r.left) / r.width));
+        if (audio.duration) audio.currentTime = p * audio.duration;
+      }
+      bar.addEventListener('pointerdown', e => {
+        seekTo(e.clientX); bar.setPointerCapture(e.pointerId);
+        const move = ev => seekTo(ev.clientX);
+        const up = () => { bar.removeEventListener('pointermove', move); bar.removeEventListener('pointerup', up); };
+        bar.addEventListener('pointermove', move); bar.addEventListener('pointerup', up);
+      });
+      bar.addEventListener('keydown', e => {
+        if (e.key === 'ArrowRight') audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 5);
+        if (e.key === 'ArrowLeft') audio.currentTime = Math.max(0, audio.currentTime - 5);
+      });
+
+      // Mini reproductor cuando la tarjeta sale de la pantalla
+      let cardVisible = true;
+      const updateMini = () => mini.classList.toggle('show', !cardVisible && (audio.currentTime > 0 || !audio.paused));
+      if ('IntersectionObserver' in window) {
+        const miniObserver = new IntersectionObserver(entries => {
+          entries.forEach(en => { cardVisible = en.isIntersecting; updateMini(); });
+        }, { threshold: 0 });
+        miniObserver.observe(card);
+      }
+      audio.addEventListener('play', updateMini);
+
+      // Pantalla de bloqueo / controles del sistema (móvil y escritorio)
+      if ('mediaSession' in navigator) {
+        try {
+          navigator.mediaSession.metadata = new MediaMetadata({
+            title: 'Vicios', artist: 'Teo Galíndez', album: 'Autor: Cheo Orozco · IC Records',
+            artwork: [{ src: new URL('images.jpg', location.href).href, sizes: '225x225', type: 'image/jpeg' }]
+          });
+          navigator.mediaSession.setActionHandler('play', () => { userPaused = false; audio.muted = false; tryPlay(); });
+          navigator.mediaSession.setActionHandler('pause', () => { userPaused = true; audio.pause(); });
+          navigator.mediaSession.setActionHandler('seekbackward', () => { audio.currentTime = Math.max(0, audio.currentTime - 10); });
+          navigator.mediaSession.setActionHandler('seekforward', () => { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10); });
+        } catch (e) {}
+      }
+
+      autoStart();
     })();
   </script>
 
